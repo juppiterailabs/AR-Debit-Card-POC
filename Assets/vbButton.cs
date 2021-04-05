@@ -7,24 +7,28 @@ using Vuforia;
 public class vbButton : MonoBehaviour, IVirtualButtonEventHandler {
 
     public GameObject vbBtnObj;
-    public Animator cubeAni;
+    public GameObject Account_Data;
+
 
  // Use this for initialization
  void Start () {
         vbBtnObj = GameObject.Find("LacieBtn");
+
         vbBtnObj.GetComponent<VirtualButtonBehaviour>().RegisterEventHandler(this);
-        cubeAni.GetComponent<Animator>();
+        Account_Data = GameObject.Find("Transactions");
+        Account_Data.active = false;
  }
- 
+
     public void OnButtonPressed(VirtualButtonBehaviour vb)
     {
-        cubeAni.Play("cube_animation");
         Debug.Log("Button pressed");
+        Account_Data.active = true;
+        // Trans.transform.position = new Vector3(0,0, 1);
     }
 
     public void OnButtonReleased(VirtualButtonBehaviour vb)
     {
-        cubeAni.Play("none");
         Debug.Log("Button released");
+        Account_Data.active = false;
     }
 }
